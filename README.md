@@ -1,5 +1,6 @@
 # HIRun3ECALSettings
-HI Object Validation acc ECAL ZS/SR settings
+
+*HI Object Validation acc ECAL ZS/SR settings*
 
 Following instructions from the Twiki [link](https://twiki.cern.ch/twiki/bin/view/CMS/HiEcalStudies2021#Job_submission)
 
