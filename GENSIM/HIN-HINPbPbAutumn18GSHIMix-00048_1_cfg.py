@@ -66,7 +66,7 @@ process.RAWSIMoutput = cms.OutputModule("PoolOutputModule",
 # Additional output definition
 
 # Other statements
-process.mix.input.fileNames = cms.untracked.vstring(FileUtils.loadListFromFile('MinBiasInput.txt'))
+process.mix.input.fileNames = cms.untracked.vstring(FileUtils.loadListFromFile('MinBiasInputprebello.txt'))
 
 process.XMLFromDBSource.label = cms.string("Extended")
 process.genstepfilter.triggerConditions=cms.vstring("generation_step")
