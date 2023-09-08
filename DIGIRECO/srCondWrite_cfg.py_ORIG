@@ -2,7 +2,7 @@ import FWCore.ParameterSet.Config as cms
 
 process = cms.Process("ProcessOne")
 process.load("CondCore.DBCommon.CondDBCommon_cfi")
-process.CondDBCommon.connect = 'sqlite_file:EcalSRSettings_beam2018_option1_v00_mc.db'
+process.CondDBCommon.connect = 'sqlite_file:EcalSRSettings_beam2018_option1_v00_mc_EB8_EE12.db'
 process.CondDBCommon.DBParameters.authenticationPath = '/afs/cern.ch/cms/DB/conddb'
 
 process.MessageLogger = cms.Service("MessageLogger",
@@ -21,7 +21,7 @@ process.PoolDBOutputService = cms.Service("PoolDBOutputService",
     process.CondDBCommon,
     toPut = cms.VPSet(cms.PSet(
         record = cms.string('EcalSRSettingsRcd'),
-        tag = cms.string('EcalSRSettings_beam2018_option1_v00_mc')
+        tag = cms.string('EcalSRSettings_beam2018_option1_v00_mc_EB8_EE12')
     ))
 )
 

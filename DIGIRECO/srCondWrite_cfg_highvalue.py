@@ -2,7 +2,7 @@ import FWCore.ParameterSet.Config as cms
 
 process = cms.Process("ProcessOne")
 process.load("CondCore.DBCommon.CondDBCommon_cfi")
-process.CondDBCommon.connect = 'sqlite_file:EcalSRSettings_beam2018_option1_v00_mc.db'
+process.CondDBCommon.connect = 'sqlite_file:EcalSRSettings_beam2018_option1_v00_mc_highvalue.db'
 process.CondDBCommon.DBParameters.authenticationPath = '/afs/cern.ch/cms/DB/conddb'
 
 process.MessageLogger = cms.Service("MessageLogger",
@@ -21,7 +21,7 @@ process.PoolDBOutputService = cms.Service("PoolDBOutputService",
     process.CondDBCommon,
     toPut = cms.VPSet(cms.PSet(
         record = cms.string('EcalSRSettingsRcd'),
-        tag = cms.string('EcalSRSettings_beam2018_option1_v00_mc')
+        tag = cms.string('EcalSRSettings_beam2018_option1_v00_mc_highvalue')
     ))
 )
 
@@ -76,19 +76,19 @@ process.writeInDB = cms.EDAnalyzer("EcalSRCondTools",
     srpEndcapHighInterestChannelZS = cms.double(-1.e9),
 
     #switch to run w/o trigger primitive. For debug use only
-    trigPrimBypass = cms.bool(False),
+                                   trigPrimBypass = cms.bool(True),  #changed to True Pat
 
     # Mode selection for "Trig bypass" mode
     # 0: TT thresholds applied on sum of crystal Et's
     # 1: TT thresholds applies on compressed Et from Trigger primitive
     # @ee trigPrimByPass_ switch
-    trigPrimBypassMode = cms.int32(0),
+                                   trigPrimBypassMode = cms.int32(1),
                               
     #for debug mode only:
-    trigPrimBypassLTH = cms.double(1.0),
+    trigPrimBypassLTH = cms.double(10.0),  #value changed Pat
 
     #for debug mode only:
-    trigPrimBypassHTH = cms.double(1.0),
+    trigPrimBypassHTH = cms.double(10.0), #value changed Pat
 
     #for debug mode only
     trigPrimBypassWithPeakFinder = cms.bool(True),
@@ -172,10 +172,16 @@ process.writeInDB.ecalDccZs1stSample = cms.int32(2)
 #   is 22/4 = 5.5
 # ZS energy threshold in GeV to apply to low interest channels of barrel
 process.writeInDB.ebDccAdcToGeV = cms.double(0.035)
-process.writeInDB.srpBarrelLowInterestChannelZS = cms.double(5.5*0.035) 
+process.writeInDB.srpBarrelLowInterestChannelZS = cms.double(10.0*0.035) #value changed here Pat
+
+#added Pat
+process.writeInDB.srpBarrelHighInterestChannelZS = cms.double(10.0*0.035)
 
 # ZS energy threshold in GeV to apply to low interest channels of endcap
 process.writeInDB.eeDccAdcToGeV = cms.double(0.06)
-process.writeInDB.srpEndcapLowInterestChannelZS = cms.double(6*0.06)
+process.writeInDB.srpEndcapLowInterestChannelZS = cms.double(10.0*0.06)  #value changed here Pat
+
+#added Pat
+process.writeInDB.srpEndcapHighInterestChannelZS = cms.double(10.0*0.035)
 
 process.p = cms.Path(process.writeInDB)
